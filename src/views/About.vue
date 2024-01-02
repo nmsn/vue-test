@@ -29,6 +29,7 @@ export default {
       this.inputContent = "1";
       let a = 2;
       console.log(a);
+      this.inputContent = "2";
       debugger;
       this.$store.commit("increment");
     },
