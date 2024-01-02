@@ -14,8 +14,8 @@ export default {
   name: "AboutPage",
   data() {
     return {
-      inputContent: '',
-    }
+      inputContent: "",
+    };
   },
   computed: {
     ...mapState({
@@ -23,7 +23,13 @@ export default {
     }),
   },
   methods: {
+    add() {},
+    reset() {},
     onClick() {
+      this.inputContent = "1";
+      let a = 2;
+      console.log(a);
+      debugger;
       this.$store.commit("increment");
     },
   },
