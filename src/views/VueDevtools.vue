@@ -35,6 +35,7 @@ export default {
   },
   methods: {
     onInputInc() {
+      debugger;
       this.input = this.input + 1;
     },
     onInc() {
