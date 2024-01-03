@@ -1,9 +1,16 @@
 <template>
-  <div class="child">
-    <button @click="onChildInc">onChildInc</button>
-    <button @click="onParentInc">onParentInc</button>
-    <div>childVal:{{ childVal }}</div>
-    <div>data:{{ data }}</div>
+  <div>
+    <h3>VueChild</h3>
+    <div class="child">
+      <button @click="onChildInc">
+        onChildInc
+      </button>
+      <button @click="onParentInc">
+        onParentInc
+      </button>
+      <div>childVal:{{ childVal }}</div>
+      <div>data:{{ data }}</div>
+    </div>
   </div>
 </template>
 
