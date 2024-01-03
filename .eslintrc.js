@@ -11,5 +11,6 @@ module.exports = {
   ],
   rules: {
     "no-debugger": "off",
+    "vue/html-self-closing": "off",
   },
 };

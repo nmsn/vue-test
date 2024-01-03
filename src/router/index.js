@@ -3,7 +3,12 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
-//2.模块化机制 使用Router
+import Console from "../views/Console.vue";
+import ConsoleLog from "../views/ConsoleLog.vue";
+import Debugger from "../views/Debugger.vue";
+import ChromeDevtools from "../views/ChromeDevtools.vue";
+import VueDevtools from "../views/VueDevtools.vue";
+
 Vue.use(Router);
 
 //3.创建路由器对象
@@ -16,6 +21,26 @@ const router = new Router({
     {
       path: "/about",
       component: About,
+    },
+    {
+      path: "/console",
+      component: Console,
+    },
+    {
+      path: "/consolelog",
+      component: ConsoleLog,
+    },
+    {
+      path: "/debugger",
+      component: Debugger,
+    },
+    {
+      path: "/chromedevtools",
+      component: ChromeDevtools,
+    },
+    {
+      path: "/vuedevtools",
+      component: VueDevtools,
     },
   ],
 });
