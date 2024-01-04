@@ -4,8 +4,8 @@
     <div class="nav">
       <button @click="onChange">快照问题1</button>
       <button @click="onChange2">快照问题2</button>
-      <button @click="onChange3">对象</button>
-      <button @click="onChange4">基础变量</button>
+      <button @click="onChange3">内存泄漏：基础变量</button>
+      <button @click="onChange4">内存泄漏：对象</button>
     </div>
   </div>
 </template>
@@ -21,6 +21,7 @@ export default {
       console.log(a);
     },
     onChange2() {
+      // A
       const baseIndex = 65;
       const len = 26;
       const a = {};
@@ -32,16 +33,16 @@ export default {
       console.log(a);
     },
     onChange3() {
+      for (let i = 0; i < 10000; i++) {
+        console.log(i);
+      }
+    },
+    onChange4() {
       const a = {};
       for (let i = 0; i < 1000000; i++) {
         a[i] = i;
       }
       console.log(a);
-    },
-    onChange4() {
-      for (let i = 0; i < 10000; i++) {
-        console.log(i);
-      }
     },
   },
 };

@@ -8,9 +8,10 @@ module.exports = {
     "plugin:vue/essential",
     "plugin:vue/recommended",
     "eslint:recommended",
+    "@vue/prettier"
   ],
   rules: {
     "no-debugger": "off",
-    "vue/html-self-closing": "off",
+    "no-console": "off",
   },
 };

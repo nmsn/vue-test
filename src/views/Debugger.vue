@@ -34,9 +34,12 @@ export default {
       this.input = num2;
     },
     onChange2() {
+      // 跟随步骤
+      debugger;
       const num1 = add(this.input);
       const num2 = double(num1);
-      debugger;
+      // 获得结果
+      // debugger;
       this.input = num2;
     },
   },

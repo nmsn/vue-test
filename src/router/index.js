@@ -2,7 +2,6 @@ import Vue from "vue";
 //1.导入
 import Router from "vue-router";
 import Home from "../views/Home.vue";
-import About from "../views/About.vue";
 import Console from "../views/Console.vue";
 import ConsoleLog from "../views/ConsoleLog.vue";
 import Debugger from "../views/Debugger.vue";
@@ -17,10 +16,6 @@ const router = new Router({
     {
       path: "/home",
       component: Home,
-    },
-    {
-      path: "/about",
-      component: About,
     },
     {
       path: "/console",

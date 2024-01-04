@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { cloneDeep } from "lodash-es";
+import { deepCopy } from "../utils";
 export default {
   name: "ConsolePage",
   methods: {
@@ -21,26 +23,33 @@ export default {
       console.debug("debug");
     },
     onTime() {
-      console.time("count1");
-      let count = 0;
-      for (let i = 0; i < 100000; i++) {
-        count = count + 1;
-        if (i === 50000) {
-          console.timeLog("count1");
+      const obj = { a: { b: { c: { d: "d" } } } };
+      console.time("lodash.cloneDeep");
+      for (let i = 0; i < 10000; i++) {
+        cloneDeep(obj);
+        if (i === 5000) {
+          console.timeLog("lodash.cloneDeep");
         }
       }
-      console.timeEnd("count1");
-      console.log(count);
-      console.time("count2");
-      let count2 = 0;
-      for (let i = 0; i < 100000; i++) {
-        count2 = +JSON.parse(JSON.stringify(count2 + 1));
-        if (i === 50000) {
-          console.timeLog("count2");
+      console.timeEnd("lodash.cloneDeep");
+
+      console.time("JSON.stringify");
+      for (let i = 0; i < 10000; i++) {
+        JSON.parse(JSON.stringify(obj));
+        if (i === 5000) {
+          console.timeLog("JSON.stringify");
         }
       }
-      console.timeEnd("count2");
-      console.log(count2);
+      console.timeEnd("JSON.stringify");
+
+      console.time("deepCopy");
+      for (let i = 0; i < 10000; i++) {
+        deepCopy(obj);
+        if (i === 5000) {
+          console.timeLog("deepCopy");
+        }
+      }
+      console.timeEnd("deepCopy");
     },
     onDirDom() {
       const h3 = document.querySelector(".h3");
