@@ -1,21 +1,22 @@
 <template>
   <div>
-    <h3 class="h3">Debugger</h3>
+    <h3 class="h3">
+      Debugger
+    </h3>
     <div class="nav">
-      <button @click="onChange">debugger</button>
+      <button @click="onChange">
+        consoleLog
+      </button>
+      <button @click="onChange2">
+        debugger
+      </button>
       <input v-model="input">
     </div>
   </div>
 </template>
 
 <script>
-const add = (num) => {
-  return num + 1;
-};
-
-const double = (num) => {
-  return num * 2;
-};
+import { add, double } from '../utils';
 
 export default {
   name: "ConsoleLogPage",
@@ -26,9 +27,17 @@ export default {
   },
   methods: {
     onChange() {
+      const num1 = add(this.input);
+      const num2 = double(num1);
+      console.log(num2);
+      // console.log(this.input, num1, num2);
+      this.input = num2;
+    },
+    onChange2() {
+      const num1 = add(this.input);
+      const num2 = double(num1);
       debugger;
-      const num = double(add(this.input));
-      this.input = num;
+      this.input = num2;
     },
   },
 };

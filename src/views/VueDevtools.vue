@@ -33,9 +33,15 @@ export default {
       count: (state) => state.count,
     }),
   },
+  watch: {
+    input(newVal) {
+      if (newVal > 5) {
+        alert(newVal);
+      }
+    },
+  },
   methods: {
     onInputInc() {
-      debugger;
       this.input = this.input + 1;
     },
     onInc() {

@@ -1,9 +1,15 @@
 <template>
   <div>
-    <h3 class="h3">ChromeDevtools</h3>
+    <h3 class="h3">
+      ChromeDevtools
+    </h3>
     <div class="nav">
-      <button @click="onChange">debugger</button>
-      <button @click="onThrow">throw</button>
+      <button @click="onChange">
+        debugger
+      </button>
+      <button @click="onThrow">
+        throw
+      </button>
       <input v-model="input" />
     </div>
   </div>
@@ -21,7 +27,10 @@ export default {
   },
   methods: {
     onChange() {
-      const newVal = double(add(this.input));
+      const a = 2;
+      const num1 = add(this.input, a);
+      const newVal = double(num1);
+      debugger;
       this.input = newVal;
     },
     onThrow() {
