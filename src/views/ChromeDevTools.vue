@@ -1,22 +1,16 @@
 <template>
   <div>
-    <h3 class="h3">
-      ChromeDevtools
-    </h3>
+    <h3 class="h3">ChromeDevtools</h3>
     <div class="nav">
-      <button @click="onChange">
-        debugger
-      </button>
-      <button @click="onThrow">
-        throw
-      </button>
+      <button @click="onChange">debugger</button>
+      <button @click="onThrow">throw</button>
       <input v-model="input" />
     </div>
   </div>
 </template>
 
 <script>
-import { add, double } from '../utils';
+import { add, double } from "../utils";
 
 export default {
   name: "ChromeDevtoolsPage",

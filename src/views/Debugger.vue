@@ -1,22 +1,16 @@
 <template>
   <div>
-    <h3 class="h3">
-      Debugger
-    </h3>
+    <h3 class="h3">Debugger</h3>
     <div class="nav">
-      <button @click="onChange">
-        consoleLog
-      </button>
-      <button @click="onChange2">
-        debugger
-      </button>
-      <input v-model="input">
+      <button @click="onChange">consoleLog</button>
+      <button @click="onChange2">debugger</button>
+      <input v-model="input" />
     </div>
   </div>
 </template>
 
 <script>
-import { add, double } from '../utils';
+import { add, double } from "../utils";
 
 export default {
   name: "ConsoleLogPage",
