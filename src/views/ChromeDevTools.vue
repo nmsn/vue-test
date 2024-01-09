@@ -77,7 +77,10 @@ export default {
     },
     // 针对元素本身
     onDomDelChange() {
-      this.$refs.domDelRef.removeChild(this.$refs.domDelChildRef);
+      if (this.$refs.domDelRef && this.$refs.domDelChildRef) {
+        this.$refs.domDelRef.removeChild(this.$refs.domDelChildRef);
+        this.$refs.domDelChildRef = null;
+      }
     },
     onResponsiveChange() {
       this.isResponsiveShow = !this.isResponsiveShow;
@@ -91,6 +94,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 </style>

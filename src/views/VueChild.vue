@@ -2,17 +2,24 @@
   <div>
     <h3>VueChild</h3>
     <div class="child">
-      <button @click="onChildInc">onChildInc</button>
-      <button @click="onParentInc">onParentInc</button>
-      <div>childVal:{{ childVal }}</div>
-      <div>data:{{ data }}</div>
+      <Row>
+        <button @click="onChildInc">onChildInc</button>
+        <div>input: {{ input }}</div>
+      </Row>
+      <Row>
+        <button @click="onParentInc">onParentInc</button>
+        <div>data: {{ data }}</div>
+      </Row>
     </div>
   </div>
 </template>
 
 <script>
+import Row from "./Row.vue";
 export default {
-  // name: "ChromeDevtoolsPage",
+  components: {
+    Row,
+  },
   props: {
     data: {
       type: Number,
@@ -21,12 +28,12 @@ export default {
   },
   data() {
     return {
-      childVal: 0,
+      input: 0,
     };
   },
   methods: {
     onChildInc() {
-      this.childVal = this.childVal + 1;
+      this.input = this.input + 1;
     },
     onParentInc() {
       this.$emit("onParentInc");
@@ -38,6 +45,8 @@ export default {
 <style scoped>
 .child {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 </style>

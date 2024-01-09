@@ -2,26 +2,31 @@
   <div>
     <h3 class="h3">VueDevtools</h3>
     <div class="nav">
-      <button @click="onInputInc">onInputInc</button>
-      <button @click="onInc">onInc</button>
-      <button @click="onDec">onDec</button>
-      <button @click="onIncAsync">onIncAsync</button>
-      <button @click="onDecAsync">onDecAsync</button>
-      <input v-model="input" type="number" />
-      <div>{{ count }}</div>
+      <Row>
+        <button @click="onInputInc">onInputInc</button>
+        <input v-model="input" type="number" label="input" />
+      </Row>
+      <Row>
+        <button @click="onInc">onInc</button>
+        <button @click="onDec">onDec</button>
+        <button @click="onIncAsync">onIncAsync</button>
+        <button @click="onDecAsync">onDecAsync</button>
+        <div>store.count: {{ count }}</div>
+      </Row>
     </div>
-    <VueChild :data="input" />
+    <VueChild :data="input" @onParentInc="onInputInc" />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import VueChild from "./VueChild.vue";
-
+import Row from "./Row.vue";
 export default {
   // name: "ChromeDevtoolsPage",
   components: {
     VueChild,
+    Row,
   },
   data() {
     return {
@@ -34,22 +39,25 @@ export default {
     }),
   },
   watch: {
-    input(newVal) {
-      if (newVal > 5) {
-        alert(newVal);
-      }
-    },
+    // TODO vue 在线修改可以出发
+    // input(newVal) {
+    //   if (newVal > 5) {
+    //     alert(newVal);
+    //   }
+    // },
   },
   methods: {
     onInputInc() {
       this.input = this.input + 1;
     },
+    // commit
     onInc() {
       this.$store.commit("increment");
     },
     onDec() {
       this.$store.commit("decrement");
     },
+    // dispatch
     onIncAsync() {
       this.$store.dispatch("incrementAsync");
     },
@@ -57,7 +65,6 @@ export default {
       this.$store.dispatch("decrementAsync");
     },
     onParentInc() {
-      console.log(0);
       this.input = this.input + 1;
     },
   },
@@ -67,6 +74,8 @@ export default {
 <style scoped>
 .nav {
   display: flex;
-  gap: 10px;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
