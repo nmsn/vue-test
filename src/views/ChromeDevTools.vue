@@ -2,21 +2,55 @@
   <div>
     <h3 class="h3">ChromeDevtools</h3>
     <div class="nav">
-      <button @click="onChange">debugger</button>
-      <button @click="onThrow">throw</button>
-      <input v-model="input" />
+      <Row>
+        <button @click="onChange">debugger</button>
+        <input v-model="input" />
+      </Row>
+      <Row>
+        <button @click="onThrow">throw</button>
+      </Row>
+
+      <Row>
+        <button @click="onSubTreeChange">子树修改</button>
+        <div ref="domRef">
+          <span ref="domChildRef">子节点文本</span>
+        </div>
+      </Row>
+
+      <Row>
+        <button @click="onDomAttrChange">属性修改</button>
+        <div ref="domAttrRef">属性修改</div>
+      </Row>
+      <Row>
+        <button @click="onDomDelChange">删除节点</button>
+        <div ref="domDelRef">
+          <span ref="domDelChildRef">子节点文本</span>
+        </div>
+      </Row>
+
+      <Row>
+        <button @click="onResponsiveChange">响应式修改</button>
+        <div :style="`color:${isResponsiveShow ? 'red' : 'blue'};`">
+          响应式修改
+        </div>
+      </Row>
     </div>
   </div>
 </template>
 
 <script>
 import { add, double } from "../utils";
-
+import Row from "./Row";
 export default {
   name: "ChromeDevtoolsPage",
+  components: {
+    Row,
+  },
   data() {
     return {
       input: 0,
+      isDomShow: false,
+      isResponsiveShow: false,
     };
   },
   methods: {
@@ -27,9 +61,26 @@ export default {
       debugger;
       this.input = newVal;
     },
+    // TODO 未捕获的查看 html
     onThrow() {
       const x = undefined;
       x.x = 1;
+    },
+    // dom
+    // 所有子节点
+    onSubTreeChange() {
+      this.$refs.domChildRef.innerHTML = "子节点文本-修改后";
+    },
+    onDomAttrChange() {
+      this.isDomShow = !this.isDomShow;
+      this.$refs.domAttrRef.style.color = this.isDomShow ? "red" : "blue";
+    },
+    // 针对元素本身
+    onDomDelChange() {
+      this.$refs.domDelRef.removeChild(this.$refs.domDelChildRef);
+    },
+    onResponsiveChange() {
+      this.isResponsiveShow = !this.isResponsiveShow;
     },
   },
 };
@@ -38,6 +89,8 @@ export default {
 <style scoped>
 .nav {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 </style>
