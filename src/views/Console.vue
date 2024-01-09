@@ -63,6 +63,7 @@ export default {
 <style scoped>
 .nav {
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  gap: 20px;
 }
 </style>
