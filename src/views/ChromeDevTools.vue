@@ -9,7 +9,10 @@
       <Row>
         <button @click="onThrow">throw</button>
       </Row>
-
+      <Row>
+        <button @click="onReq">onReq</button>
+        <span class="res">{{ res }}</span>
+      </Row>
       <Row>
         <button @click="onSubTreeChange">子树修改</button>
         <div ref="domRef">
@@ -41,6 +44,7 @@
 <script>
 import { add, double } from "../utils";
 import Row from "./Row";
+import axios from "axios";
 export default {
   name: "ChromeDevtoolsPage",
   components: {
@@ -51,6 +55,7 @@ export default {
       input: 0,
       isDomShow: false,
       isResponsiveShow: false,
+      res: "",
     };
   },
   methods: {
@@ -65,6 +70,13 @@ export default {
     onThrow() {
       const x = undefined;
       x.x = 1;
+    },
+    // 接口断点
+    async onReq() {
+      const { data } = await axios.get(
+        "https://api.uomg.com/api/comments.163?format=text",
+      );
+      this.res = data;
     },
     // dom
     // 所有子节点
@@ -95,5 +107,13 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 20px;
+}
+
+.res {
+  max-width: 600px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>
