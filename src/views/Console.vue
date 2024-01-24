@@ -11,7 +11,23 @@
 
 <script>
 import { cloneDeep } from "lodash-es";
-import { deepCopy } from "../utils";
+
+const deepCopy = (obj) => {
+  if (obj === null || typeof obj !== "object") {
+    return obj;
+  }
+
+  const copy = Array.isArray(obj) ? [] : {};
+
+  for (let key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      copy[key] = deepCopy(obj[key]);
+    }
+  }
+
+  return copy;
+};
+
 export default {
   name: "ConsolePage",
   methods: {

@@ -10,8 +10,13 @@
 </template>
 
 <script>
-import { add, double } from "../utils";
+const add = (num, num2 = 1) => {
+  return num + num2;
+};
 
+const double = (num) => {
+  return num * 2;
+};
 export default {
   name: "ConsoleLogPage",
   data() {
@@ -23,8 +28,8 @@ export default {
     onChange() {
       const num1 = add(this.input);
       const num2 = double(num1);
-      console.log(num2);
-      // console.log(this.input, num1, num2);
+      // console.log(num2);
+      console.log(this.input, num1, num2);
       this.input = num2;
     },
     onChange2() {
