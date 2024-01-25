@@ -40,6 +40,22 @@
           响应式修改
         </div>
       </Row>
+
+      <Row>
+        <!-- 原生 hover 调试 -->
+        <div class="hover">hover</div>
+      </Row>
+
+      <Row>
+        <!-- 原生 hover 调试 通过删除事件监听器 -->
+        <div
+          :class="{ fakeHover: hover }"
+          @mouseenter="onFakeHover(true)"
+          @mouseout="onFakeHover(false)"
+        >
+          hover2
+        </div>
+      </Row>
     </div>
   </div>
 </template>
@@ -68,6 +84,7 @@ export default {
       isDomShow: false,
       isResponsiveShow: false,
       res: "",
+      hover: false,
     };
   },
   methods: {
@@ -76,7 +93,7 @@ export default {
       const a = 2;
       const num1 = add(this.input, a);
       const newVal = double(num1);
-      // debugger;
+      debugger;
       this.input = newVal;
     },
     // 条件断点
@@ -93,6 +110,7 @@ export default {
       x.x = 1;
     },
     // 接口断点，在接口发送前暂停
+    // 网络 -> 发起程序 可以直接查看调用栈，跳转到源码
     async onReq() {
       const { data } = await axios.get(
         "https://api.uomg.com/api/comments.163?format=text",
@@ -120,11 +138,14 @@ export default {
     onResponsiveChange() {
       this.isResponsiveShow = !this.isResponsiveShow;
     },
+    onFakeHover(type) {
+      this.hover = type;
+    },
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .nav {
   display: flex;
   flex-direction: column;
@@ -138,5 +159,17 @@ export default {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.hover {
+  color: red;
+
+  &:hover {
+    color: blue;
+  }
+}
+
+.fakeHover {
+  color: green;
 }
 </style>

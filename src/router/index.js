@@ -1,12 +1,11 @@
 import Vue from "vue";
 //1.导入
 import Router from "vue-router";
-import Home from "../views/Home.vue";
-import Console from "../views/Console.vue";
-import ConsoleLog from "../views/ConsoleLog.vue";
-import Debugger from "../views/Debugger.vue";
-import ChromeDevtools from "../views/ChromeDevtools.vue";
-import VueDevtools from "../views/VueDevtools.vue";
+// import Console from "../views/Console.vue";
+// import ConsoleLog from "../views/ConsoleLog.vue";
+// import Debugger from "../views/Debugger.vue";
+// import ChromeDevtools from "../views/ChromeDevtools.vue";
+// import VueDevtools from "../views/VueDevtools.vue";
 
 Vue.use(Router);
 
@@ -15,27 +14,37 @@ const router = new Router({
   routes: [
     {
       path: "/home",
-      component: Home,
+      component: () =>
+        import(/* webpackChunkName: "home" */ "../views/Home.vue"),
     },
     {
       path: "/console",
-      component: Console,
+      component: () =>
+        import(/* webpackChunkName: "console" */ "../views/Console.vue"),
     },
     {
       path: "/consolelog",
-      component: ConsoleLog,
+      component: () =>
+        import(/* webpackChunkName: "consoleLog" */ "../views/ConsoleLog.vue"),
     },
     {
       path: "/debugger",
-      component: Debugger,
+      component: () =>
+        import(/* webpackChunkName: "debugger" */ "../views/Debugger.vue"),
     },
     {
       path: "/chromedevtools",
-      component: ChromeDevtools,
+      component: () =>
+        import(
+          /* webpackChunkName: "chromedevtools" */ "../views/ChromeDevtools.vue"
+        ),
     },
     {
       path: "/vuedevtools",
-      component: VueDevtools,
+      component: () =>
+        import(
+          /* webpackChunkName: "vuedevtools" */ "../views/VueDevtools.vue"
+        ),
     },
   ],
 });
